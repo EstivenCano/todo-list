@@ -1,0 +1,43 @@
+/*Developer info card*/
+.card {
+  position: fixed;
+  white-space: nowrap;
+  padding: 15px;
+  bottom: 0;
+  border-radius: 0 25px 25px 0;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  animation: slide-to-left 0.8s forwards;
+}
+/*Show card on hover*/
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  opacity: 1;
+  animation: slide-to-right 0.8s forwards;
+}
+
+.card-subtitle {
+  transform: rotate(90deg);
+  color: white;
+  position: fixed;
+  margin: auto;
+  right: -40px;
+  top: 35%;
+}
+
+@keyframes slide-to-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-95%);
+  }
+}
+
+@keyframes slide-to-right {
+  0% {
+    transform: translateX(-95%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
