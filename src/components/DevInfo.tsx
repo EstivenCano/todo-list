@@ -26,7 +26,10 @@ const DevInfo = () => {
           justifyContent='center'
           columnGap={3}>
           <Grid item>
-            <a href='https://github.com'>
+            <a
+              href='https://github.com/EstivenCano'
+              rel='noreferrer'
+              target='_blank'>
               <img
                 src='https://play-lh.googleusercontent.com/PCpXdqvUWfCW1mXhH1Y_98yBpgsWxuTSTofy3NGMo9yBTATDyzVkqU580bfSln50bFU'
                 alt='github'
@@ -36,7 +39,10 @@ const DevInfo = () => {
             </a>
           </Grid>
           <Grid item>
-            <a href='https://linkedin.com'>
+            <a
+              href='https://www.linkedin.com/in/estivencano/'
+              rel='noreferrer'
+              target='_blank'>
               <img
                 src='https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/LinkedIn_icon_circle.svg/2048px-LinkedIn_icon_circle.svg.png'
                 alt='linkedin'

@@ -6,7 +6,7 @@ import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import theme from "../../theme";
 
 const reasonsToUse = [
-  "Orginize all your daily tasks in one place and get them done.",
+  "Organize all your daily tasks in one place and get them done.",
   "Keep track of your daily expenses and get a clear overview.",
   "Bring back your productivity and focus on your goals instead of distractions.",
   "Never forget anything again.",
@@ -14,7 +14,7 @@ const reasonsToUse = [
 
 const Home = () => {
   return (
-    <Grid container className={classes["App"]}>
+    <Grid container className={classes["App"]} rowGap={7}>
       <Grid item md={6} xs={12}>
         <Typography
           variant='h1'
