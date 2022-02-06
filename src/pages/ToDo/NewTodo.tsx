@@ -1,19 +1,21 @@
 import type { FC, FormEvent } from "react";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import classes from "./NewTodo.module.css";
-import { Grid, Typography, Button } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
+import Button from "../../components/Button";
 import CustomTextField from "../../components/TextField";
 import { useToDoContext } from "../../store/ToDoContext";
+import { Todo } from "../../models/todo";
 
 const NewTodo: FC = () => {
   const { state, dispatch } = useToDoContext();
   const newTodoRef = useRef<HTMLInputElement>();
   const dueDateRef = useRef<HTMLInputElement>();
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    await dispatch({
+    dispatch({
       type: "ADD_TODO",
       payload: {
         id: uuidv4(),
@@ -26,10 +28,37 @@ const NewTodo: FC = () => {
     cleanForm();
   };
 
+  const handleUpdate = (e: FormEvent) => {
+    e.preventDefault();
+    dispatch({
+      type: "UPDATE_TODO",
+      payload: {
+        id: state.todoToUpdate.id,
+        title: newTodoRef?.current?.value || "",
+        ondueDate: new Date(dueDateRef?.current?.value || ""),
+        completed: state.todoToUpdate.completed,
+        createdDate: state.todoToUpdate.createdDate,
+      },
+    });
+    dispatch({ type: "SET_EDITING", payload: false });
+    cleanForm();
+  };
+
+  useEffect(() => {
+    if (state.editing) {
+      newTodoRef.current!.value = state.todoToUpdate.title;
+      dueDateRef.current!.value = state.todoToUpdate.ondueDate
+        .toISOString()
+        .split("T")[0];
+    }
+  }, [state.editing]);
+
   const handleReset = (e: FormEvent) => {
     e.preventDefault();
     cleanForm();
     dispatch({ type: "CLOSE_FORM" });
+    dispatch({ type: "SET_EDITING", payload: false });
+    dispatch({ type: "SET_TODO_TO_UPDATE", payload: {} as Todo });
   };
 
   const cleanForm = () => {
@@ -50,7 +79,9 @@ const NewTodo: FC = () => {
         alignItems='center'
         columnGap={2}
         rowGap={2}
-        padding={5}
+        pl={4}
+        pr={4}
+        pb={4}
         className={classes["new-todo-form-container"]}>
         <Typography variant='h5' fontWeight='300'>
           New ToDo
@@ -86,13 +117,24 @@ const NewTodo: FC = () => {
           container
           justifyContent='flex-end'
           columnGap={5}>
-          <Button
-            type='submit'
-            color='primary'
-            variant='contained'
-            className={classes["new-todo-form-button"]}>
-            Add
-          </Button>
+          {state.editing ? (
+            <Button
+              type='button'
+              onClick={handleUpdate}
+              color='primary'
+              variant='contained'
+              className={classes["new-todo-form-button"]}>
+              Update
+            </Button>
+          ) : (
+            <Button
+              type='submit'
+              color='primary'
+              variant='contained'
+              className={classes["new-todo-form-button"]}>
+              Add
+            </Button>
+          )}
           <Button
             type='reset'
             color='error'

@@ -7,10 +7,18 @@ type Action =
   | { type: "ADD_TODO"; payload: Todo }
   | { type: "REMOVE_TODO"; payload: Todo }
   | { type: "TOGGLE_TODO"; payload: Todo }
+  | { type: "UPDATE_TODO"; payload: Todo }
+  | { type: "SET_EDITING"; payload: boolean }
+  | { type: "SET_TODO_TO_UPDATE"; payload: Todo }
   | { type: "OPEN_FORM" }
   | { type: "CLOSE_FORM" };
 type DispatchProps = (action: Action) => void;
-type State = { todoList: Todo[]; openForm: boolean };
+type State = {
+  todoList: Todo[];
+  openForm: boolean;
+  editing: boolean;
+  todoToUpdate: Todo;
+};
 type ToDoProviderProps = { children: ReactNode };
 type ToDoContextProps = {
   state: State;
@@ -47,6 +55,26 @@ const ToDoReducer = (state: State, action: Action) => {
         ),
       };
     }
+    case "UPDATE_TODO": {
+      return {
+        ...state,
+        todoList: state.todoList.map((todo) =>
+          todo.id === action.payload.id ? { ...todo, ...action.payload } : todo
+        ),
+      };
+    }
+    case "SET_EDITING": {
+      return {
+        ...state,
+        editing: action.payload,
+      };
+    }
+    case "SET_TODO_TO_UPDATE": {
+      return {
+        ...state,
+        todoToUpdate: action.payload,
+      };
+    }
     case "OPEN_FORM": {
       return { ...state, openForm: true };
     }
@@ -63,6 +91,8 @@ const ToDoProvider = ({ children }: ToDoProviderProps) => {
   const [state, dispatch] = useReducer(ToDoReducer, {
     todoList: [],
     openForm: false,
+    editing: false,
+    todoToUpdate: {} as Todo,
   });
   const value = { state, dispatch };
   return <TodoContext.Provider value={value}>{children}</TodoContext.Provider>;
