@@ -1,4 +1,4 @@
-import React from "react";
+import type { FC } from "react";
 import classes from "./index.module.css";
 import { Typography, Grid } from "@mui/material";
 import Button from "../../components/Button";
@@ -12,7 +12,7 @@ const reasonsToUse = [
   "Never forget anything again.",
 ];
 
-const Home = () => {
+const Home: FC = () => {
   return (
     <Grid container className={classes["App"]} rowGap={7}>
       <Grid item md={6} xs={12}>
@@ -72,7 +72,7 @@ const Home = () => {
           rowGap={2}
           alignItems='center'
           justifyContent='center'>
-          <Button endIcon={<CheckBoxIcon />}>
+          <Button href='/todo' endIcon={<CheckBoxIcon />}>
             <Typography variant='h5'>Lets get started</Typography>
           </Button>
         </Grid>

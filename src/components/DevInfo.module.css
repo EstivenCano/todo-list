@@ -2,17 +2,17 @@
 .card {
   position: fixed;
   white-space: nowrap;
+  overflow: hidden;
   padding: 15px;
   bottom: 0;
   border-radius: 0 25px 25px 0;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  animation: slide-to-left 0.8s forwards;
+  box-shadow: 0 4px 8px 0 rgba(165, 148, 148, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  animation: slide-to-left 1s forwards;
 }
 /*Show card on hover*/
 .card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  opacity: 1;
-  animation: slide-to-right 0.8s forwards;
+  animation: slide-to-right 1s forwards;
 }
 
 .card-subtitle {
@@ -20,8 +20,8 @@
   color: white;
   position: fixed;
   margin: auto;
-  right: -40px;
-  top: 35%;
+  right: -20px;
+  top: 43%;
 }
 
 @keyframes slide-to-left {
@@ -29,13 +29,13 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-95%);
+    transform: translateX(-90%);
   }
 }
 
 @keyframes slide-to-right {
   0% {
-    transform: translateX(-95%);
+    transform: translateX(-90%);
   }
   100% {
     transform: translateX(0);

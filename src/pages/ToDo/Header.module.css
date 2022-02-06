@@ -1,0 +1,9 @@
+.logo-container {
+  margin: 5px;
+  box-shadow: inset 0 0 0 5px #fff;
+}
+
+/*Logo with constant animation*/
+.logo {
+  height: 40px;
+}

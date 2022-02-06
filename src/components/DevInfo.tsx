@@ -1,8 +1,9 @@
+import type { FC } from "react";
 import { Grid, Typography } from "@mui/material";
 import classes from "./DevInfo.module.css";
 import theme from "../theme";
 
-const DevInfo = () => {
+const DevInfo: FC = () => {
   return (
     <>
       <Grid
@@ -53,7 +54,7 @@ const DevInfo = () => {
           </Grid>
         </Grid>
         <Typography variant='subtitle1' className={classes["card-subtitle"]}>
-          Developer info
+          Developer info ↓
         </Typography>
       </Grid>
     </>
