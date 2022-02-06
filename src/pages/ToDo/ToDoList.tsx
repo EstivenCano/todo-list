@@ -8,7 +8,7 @@ import TodoItem from "./TodoItem";
 import NewTodo from "./NewTodo";
 
 const ToDoList: FC = () => {
-  const { state, dispatch } = useToDoContext();
+  const { state } = useToDoContext();
   const { openForm, todoList, editing } = state;
   return (
     <Grid

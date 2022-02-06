@@ -5,7 +5,7 @@ import { useToDoContext } from "../../store/ToDoContext";
 import Button from "../../components/Button";
 
 const Options: FC = () => {
-  const { state, dispatch } = useToDoContext();
+  const { dispatch } = useToDoContext();
 
   const handleNewForm = () => {
     dispatch({ type: "OPEN_FORM" });

@@ -17,7 +17,7 @@ interface TodoItemProps {
 }
 
 const TodoItem: FC<TodoItemProps> = ({ todo, index }) => {
-  const { state, dispatch } = useToDoContext();
+  const { dispatch } = useToDoContext();
   const [loaded, setLoaded] = useState(false);
 
   const handleDelete = () => {
@@ -54,10 +54,8 @@ const TodoItem: FC<TodoItemProps> = ({ todo, index }) => {
         flexDirection='row'
         justifyContent='flex-start'
         alignItems='center'
-        bgcolor={index % 2 === 0 ? "background.default" : "Background.paper"}
-        pl={2}
-        pr={2}>
-        <Grid item xs={1} md={1}>
+        bgcolor={index % 2 === 0 ? "background.default" : "Background.paper"}>
+        <Grid item xs={2} md={1}>
           <Checkbox
             onClick={handleComplete}
             sx={{
@@ -65,18 +63,19 @@ const TodoItem: FC<TodoItemProps> = ({ todo, index }) => {
             }}
           />
         </Grid>
-        <Grid item xs={11} md={7}>
+        <Grid item xs={6} md={7} sx={{ overflow: "hidden" }}>
           <Typography
             variant='subtitle1'
-            align='center'
+            align='left'
             color='grey'
             sx={{
               whiteSpace: "nowrap",
+              flexWrap: "nowrap",
             }}>
             {todo.title}
           </Typography>
         </Grid>
-        <Grid item xs={12} md={2}>
+        <Grid item xs={4} md={2}>
           <Typography variant='subtitle1' align='center'>
             {todo.ondueDate.toISOString().split("T")[0]}
           </Typography>

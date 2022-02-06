@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import type { FC, FormEvent } from "react";
 import { useRef, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
@@ -116,7 +117,14 @@ const NewTodo: FC = () => {
           xs={12}
           container
           justifyContent='flex-end'
-          columnGap={5}>
+          columnGap={3}>
+          <Button
+            type='reset'
+            color='error'
+            variant='contained'
+            className={classes["new-todo-form-button"]}>
+            Cancel
+          </Button>
           {state.editing ? (
             <Button
               type='button'
@@ -135,13 +143,6 @@ const NewTodo: FC = () => {
               Add
             </Button>
           )}
-          <Button
-            type='reset'
-            color='error'
-            variant='contained'
-            className={classes["new-todo-form-button"]}>
-            Cancel
-          </Button>
         </Grid>
       </Grid>
     </form>
