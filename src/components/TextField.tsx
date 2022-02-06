@@ -1,5 +1,6 @@
 import { styled } from "@mui/material/styles";
-import { TextField as MuiTextField } from "@mui/material";
+import type { FC } from "react";
+import { TextField as MuiTextField, TextFieldProps } from "@mui/material";
 
 const CustomTextField = styled(MuiTextField)(({ theme }) => ({
   "& label.Mui-focused": {
@@ -21,7 +22,7 @@ const CustomTextField = styled(MuiTextField)(({ theme }) => ({
   },
 }));
 
-const TextField = ({ ...props }) => (
+const TextField: FC<TextFieldProps> = ({ ...props }) => (
   <CustomTextField
     {...props}
     InputLabelProps={{

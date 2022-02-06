@@ -1,4 +1,6 @@
 import type { FC, FormEvent } from "react";
+import { useRef } from "react";
+import { v4 as uuidv4 } from "uuid";
 import classes from "./NewTodo.module.css";
 import { Grid, Typography, Button } from "@mui/material";
 import CustomTextField from "../../components/TextField";
@@ -6,14 +8,33 @@ import { useToDoContext } from "../../store/ToDoContext";
 
 const NewTodo: FC = () => {
   const { state, dispatch } = useToDoContext();
+  const newTodoRef = useRef<HTMLInputElement>();
+  const dueDateRef = useRef<HTMLInputElement>();
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    await dispatch({
+      type: "ADD_TODO",
+      payload: {
+        id: uuidv4(),
+        title: newTodoRef?.current?.value || "",
+        ondueDate: new Date(dueDateRef?.current?.value || ""),
+        completed: false,
+        createdDate: new Date(),
+      },
+    });
+    cleanForm();
   };
 
   const handleReset = (e: FormEvent) => {
     e.preventDefault();
+    cleanForm();
     dispatch({ type: "CLOSE_FORM" });
+  };
+
+  const cleanForm = () => {
+    newTodoRef.current!.value = "";
+    dueDateRef.current!.value = "";
   };
 
   return (
@@ -35,7 +56,9 @@ const NewTodo: FC = () => {
           New ToDo
         </Typography>
         <CustomTextField
+          inputRef={newTodoRef}
           label='New todo'
+          required
           variant='outlined'
           type='text'
           name='new-todo'
@@ -45,7 +68,9 @@ const NewTodo: FC = () => {
         />
         <Grid item xs={12} md={7}>
           <CustomTextField
+            inputRef={dueDateRef}
             label='Due Date'
+            required
             variant='outlined'
             type='date'
             name='due-date'
