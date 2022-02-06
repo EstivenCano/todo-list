@@ -1,8 +1,16 @@
 import type { FC } from "react";
 import { Grid } from "@mui/material";
 import { AddSharp } from "@mui/icons-material";
+import { useToDoContext } from "../../store/ToDoContext";
 import Button from "../../components/Button";
+
 const Options: FC = () => {
+  const { state, dispatch } = useToDoContext();
+
+  const handleNewForm = () => {
+    dispatch({ type: "OPEN_FORM" });
+  };
+
   return (
     <Grid
       container
@@ -15,7 +23,7 @@ const Options: FC = () => {
       <Button href='/history'>Todo history</Button>
       <Button
         color='success'
-        href='/history'
+        onClick={handleNewForm}
         endIcon={<AddSharp fontSize='small' />}>
         Add todo
       </Button>

@@ -1,15 +1,19 @@
 import type { FC, FormEvent } from "react";
 import classes from "./NewTodo.module.css";
-import { Grid, Typography, TextField, Button } from "@mui/material";
+import { Grid, Typography, Button } from "@mui/material";
 import CustomTextField from "../../components/TextField";
+import { useToDoContext } from "../../store/ToDoContext";
 
 const NewTodo: FC = () => {
+  const { state, dispatch } = useToDoContext();
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
   };
 
   const handleReset = (e: FormEvent) => {
     e.preventDefault();
+    dispatch({ type: "CLOSE_FORM" });
   };
 
   return (

@@ -17,7 +17,7 @@ const DevInfo: FC = () => {
           backgroundColor: theme.palette.background.default,
         }}>
         <Grid container justifyContent='center'>
-          <Typography variant='h5' color='white'>
+          <Typography variant='h6' color='white'>
             Developed by - Estiven Cano
           </Typography>
         </Grid>
@@ -53,7 +53,7 @@ const DevInfo: FC = () => {
             </a>
           </Grid>
         </Grid>
-        <Typography variant='subtitle1' className={classes["card-subtitle"]}>
+        <Typography variant='subtitle2' className={classes["card-subtitle"]}>
           Developer info ↓
         </Typography>
       </Grid>

@@ -8,19 +8,22 @@ import NotFound from "./pages/NotFound";
 import ToDo from "./pages/ToDo";
 
 import theme from "./theme";
+import { ToDoProvider } from "./store/ToDoContext";
 import DevInfo from "./components/DevInfo";
 
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
-      <Router>
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='*' element={<NotFound />} />
-          <Route path='/todo' element={<ToDo />} />
-        </Routes>
-      </Router>
-      <DevInfo />
+      <ToDoProvider>
+        <Router>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='*' element={<NotFound />} />
+            <Route path='/todo' element={<ToDo />} />
+          </Routes>
+        </Router>
+        <DevInfo />
+      </ToDoProvider>
     </ThemeProvider>
   );
 };

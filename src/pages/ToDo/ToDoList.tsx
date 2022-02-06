@@ -1,11 +1,14 @@
 import type { FC } from "react";
 import { Grid, Collapse } from "@mui/material";
+import { useToDoContext } from "../../store/ToDoContext";
 import classes from "./ToDoList.module.css";
 import theme from "../../theme";
 
 import NewTodo from "./NewTodo";
 
 const ToDoList: FC = () => {
+  const { state, dispatch } = useToDoContext();
+  const { openForm } = state;
   return (
     <Grid
       container
@@ -15,7 +18,9 @@ const ToDoList: FC = () => {
       justifyContent='center'
       bgcolor={theme.palette.background.paper}
       className={classes["container"]}>
-      <NewTodo />
+      <Collapse in={openForm}>
+        <NewTodo />
+      </Collapse>
     </Grid>
   );
 };
