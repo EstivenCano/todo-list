@@ -117,7 +117,7 @@ const NewTodo: FC = () => {
           xs={12}
           container
           justifyContent='flex-end'
-          columnGap={3}>
+          columnGap={1}>
           <Button
             type='reset'
             color='error'

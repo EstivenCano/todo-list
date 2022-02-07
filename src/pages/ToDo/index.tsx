@@ -46,7 +46,7 @@ const ToDo = () => {
   }, [data]);
 
   useEffect(() => {
-    state.todoList.length > 0 && executePost();
+    state.todoList.length >= 0 && executePost();
   }, [state.todoList]);
 
   return (

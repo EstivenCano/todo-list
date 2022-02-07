@@ -4,7 +4,7 @@ import { useToDoContext } from "../../store/ToDoContext";
 import classes from "./ToDoList.module.css";
 import theme from "../../theme";
 import TodoItem from "./TodoItem";
-
+import { TransitionGroup } from "react-transition-group";
 import NewTodo from "./NewTodo";
 
 const ToDoList: FC = () => {
@@ -28,17 +28,21 @@ const ToDoList: FC = () => {
       <Collapse in={openForm || editing}>
         <NewTodo />
       </Collapse>
-      {todoList.length === 0 && (
+      {todoList.filter((todo) => !todo.completed).length === 0 && (
         <Typography variant='h5'>No ToDo's yet</Typography>
       )}
-      {todoList.length > 0 && (
-        <Grid container>
-          <Grid item xs={12}></Grid>
-        </Grid>
-      )}
-      {todoList.map((todo, index) => (
-        <TodoItem key={todo.id} todo={todo} index={index} />
-      ))}
+      <TransitionGroup
+        style={{
+          width: "100%",
+        }}>
+        {todoList
+          .filter((todo) => !todo.completed)
+          .map((todo, index) => (
+            <Collapse key={todo.id}>
+              <TodoItem todo={todo} index={index} />
+            </Collapse>
+          ))}
+      </TransitionGroup>
     </Grid>
   );
 };
