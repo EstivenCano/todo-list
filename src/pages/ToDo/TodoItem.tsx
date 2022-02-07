@@ -58,6 +58,7 @@ const TodoItem: FC<TodoItemProps> = ({ todo, index }) => {
         <Grid item xs={2} md={1}>
           <Checkbox
             onClick={handleComplete}
+            checked={todo.completed}
             sx={{
               color: "white",
             }}
@@ -71,6 +72,7 @@ const TodoItem: FC<TodoItemProps> = ({ todo, index }) => {
             sx={{
               whiteSpace: "nowrap",
               flexWrap: "nowrap",
+              textDecoration: todo.completed ? "line-through" : "none",
             }}>
             {todo.title}
           </Typography>

@@ -4,6 +4,7 @@ import { useReducer, createContext, useContext } from "react";
 import { Todo } from "../models/todo";
 
 type Action =
+  | { type: "SET_INITIAL_TODOS"; payload: Todo[] }
   | { type: "ADD_TODO"; payload: Todo }
   | { type: "REMOVE_TODO"; payload: Todo }
   | { type: "TOGGLE_TODO"; payload: Todo }
@@ -31,6 +32,12 @@ export const TodoContext = createContext<ToDoContextProps | undefined>(
 
 const ToDoReducer = (state: State, action: Action) => {
   switch (action.type) {
+    case "SET_INITIAL_TODOS": {
+      return {
+        ...state,
+        todoList: action.payload,
+      };
+    }
     case "ADD_TODO": {
       return {
         ...state,

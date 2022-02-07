@@ -63,7 +63,7 @@ const Home: FC = () => {
               <Grid item xs={12} key={index}>
                 <Typography
                   align='left'
-                  variant='h5'
+                  variant='h6'
                   sx={{
                     textShadow:
                       "5px 5px 5px " + theme.palette.background.default,
