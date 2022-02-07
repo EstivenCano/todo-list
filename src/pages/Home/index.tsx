@@ -5,6 +5,7 @@ import { Typography, Grid, Fade } from "@mui/material";
 import Button from "../../components/Button";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import theme from "../../theme";
+import { useNavigate } from "react-router-dom";
 
 const reasonsToUse = [
   "Organize all your daily tasks in one place and get them done.",
@@ -14,6 +15,7 @@ const reasonsToUse = [
 ];
 
 const Home: FC = () => {
+  const navigate = useNavigate();
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -80,7 +82,9 @@ const Home: FC = () => {
             rowGap={2}
             alignItems='center'
             justifyContent='center'>
-            <Button href='/todo' endIcon={<CheckBoxIcon />}>
+            <Button
+              onClick={() => navigate("/todo")}
+              endIcon={<CheckBoxIcon />}>
               <Typography variant='h5'>Lets get started</Typography>
             </Button>
           </Grid>

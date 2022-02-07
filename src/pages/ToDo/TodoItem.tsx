@@ -59,6 +59,7 @@ const TodoItem: FC<TodoItemProps> = ({ todo, index }) => {
           <Checkbox
             onClick={handleComplete}
             checked={todo.completed}
+            aria-label='Mark ToDo as completed'
             sx={{
               color: "white",
             }}
@@ -83,10 +84,10 @@ const TodoItem: FC<TodoItemProps> = ({ todo, index }) => {
           </Typography>
         </Grid>
         <Grid item xs={12} md={2}>
-          <IconButton onClick={handleEdit}>
+          <IconButton onClick={handleEdit} aria-label='Edit ToDo'>
             <Edit color='primary' />
           </IconButton>
-          <IconButton onClick={handleDelete}>
+          <IconButton onClick={handleDelete} aria-label='Delete ToDo'>
             <Delete color='error' />
           </IconButton>
         </Grid>

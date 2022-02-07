@@ -3,8 +3,10 @@ import { useState, useEffect } from "react";
 import classes from "./index.module.css";
 import { Grid, Typography, Fade } from "@mui/material";
 import Button from "../../components/Button";
+import { useNavigate } from "react-router-dom";
 
 const NotFound: FC = () => {
+  const navigate = useNavigate();
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -21,7 +23,7 @@ const NotFound: FC = () => {
         <Typography variant='h1' fontWeight='500'>
           404 - Not Found!
         </Typography>
-        <Button href='/'>
+        <Button onClick={() => navigate("/")}>
           <Typography variant='h6' fontWeight='300'>
             Go Home
           </Typography>
