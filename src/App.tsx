@@ -10,16 +10,23 @@ import ToDo from "./pages/ToDo";
 import theme from "./theme";
 import { ToDoProvider } from "./store/ToDoContext";
 import DevInfo from "./components/DevInfo";
+import useAxios from "axios-hooks";
 
 const App = () => {
+  const [{ data, loading, error }] = useAxios("/todos");
+
+  loading && console.log("Loading...");
+  error && console.log("Error...");
+  data && console.log("Data...", data);
+
   return (
     <ThemeProvider theme={theme}>
       <ToDoProvider>
         <Router>
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='*' element={<NotFound />} />
             <Route path='/todo' element={<ToDo />} />
+            <Route path='*' element={<NotFound />} />
           </Routes>
         </Router>
         <DevInfo />
