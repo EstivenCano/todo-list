@@ -13,12 +13,10 @@ export const handlers = [
     );
   }),
   rest.post("/todos", (req, res, ctx) => {
-    //Save todo to localStorage
-    const todo = req.body;
-    const todos = localStorage.getItem("todoList");
-    const newTodos = todos ? [...JSON.parse(todos), todo] : [todo];
-    localStorage.setItem("todoList", JSON.stringify(newTodos));
-    // If authenticated, return a mocked user details
+    //Get all todos from re.body
+    const todos = req.body;
+    //Save the array to localStorage
+    localStorage.setItem("todoList", JSON.stringify(todos));
     return res(
       ctx.status(200),
       ctx.json({

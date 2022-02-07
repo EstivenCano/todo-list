@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import "./App.css";
 import { ThemeProvider } from "@mui/material/styles";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -10,15 +11,8 @@ import ToDo from "./pages/ToDo";
 import theme from "./theme";
 import { ToDoProvider } from "./store/ToDoContext";
 import DevInfo from "./components/DevInfo";
-import useAxios from "axios-hooks";
 
 const App = () => {
-  const [{ data, loading, error }] = useAxios("/todos");
-
-  loading && console.log("Loading...");
-  error && console.log("Error...");
-  data && console.log("Data...", data);
-
   return (
     <ThemeProvider theme={theme}>
       <ToDoProvider>
