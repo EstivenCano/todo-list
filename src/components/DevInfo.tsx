@@ -1,21 +1,20 @@
 import type { FC } from "react";
-import { Grid, Typography } from "@mui/material";
+import { useState } from "react";
+import { Grid, Typography, Collapse, Box } from "@mui/material";
 import classes from "./DevInfo.module.css";
-import theme from "../theme";
 
 const DevInfo: FC = () => {
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen((prevState) => !prevState);
+  };
+
   return (
-    <>
-      <Grid
-        container
-        item
-        md={3}
-        xs={6}
-        rowGap={1}
-        className={classes["card"]}
-        sx={{
-          backgroundColor: theme.palette.background.default,
-        }}>
+    <Box
+      className={`${classes["card"]} ${open && classes["card_open"]}`}
+      onClick={handleOpen}>
+      <Collapse in={open} collapsedSize={0} orientation='horizontal'>
         <Grid container justifyContent='center'>
           <Typography variant='h6' color='white'>
             Developed by - Estiven Cano
@@ -54,10 +53,10 @@ const DevInfo: FC = () => {
           </Grid>
         </Grid>
         <Typography variant='subtitle2' className={classes["card-subtitle"]}>
-          Developer info ↓
+          Developer info
         </Typography>
-      </Grid>
-    </>
+      </Collapse>
+    </Box>
   );
 };
 

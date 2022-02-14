@@ -1,20 +1,21 @@
 /*Developer info card*/
 .card {
   position: fixed;
+  cursor: pointer;
+  display: flex;
   white-space: nowrap;
-  overflow: hidden;
-  min-width: 300px;
+  padding-inline: 15px;
   padding-block: 15px;
-  padding-inline: 20px;
+  max-height: 18%;
   bottom: 0;
   border-radius: 0 25px 25px 0;
-  box-shadow: 0 4px 8px 0 rgba(165, 148, 148, 0.2),
+  box-shadow: 0 4px 8px 0 rgba(165, 148, 148, 0.3),
     0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  animation: slide-to-left 1s forwards;
+  transition: all 0.5s ease-in-out;
 }
-/*Show card on hover*/
-.card:hover {
-  animation: slide-to-right 1s forwards;
+
+.card_open {
+  padding-inline: 50px;
 }
 
 .card-subtitle {
@@ -22,24 +23,11 @@
   color: white;
   position: fixed;
   margin: auto;
-  right: -30px;
-  top: 43%;
+  left: -20px;
+  bottom: 40px;
 }
 
-@keyframes slide-to-left {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-95%);
-  }
-}
-
-@keyframes slide-to-right {
-  0% {
-    transform: translateX(-95%);
-  }
-  100% {
-    transform: translateX(0);
-  }
+.card-subtitle:hover {
+  transform: scale(1.1) rotate(90deg);
+  transition: all 0.5s ease-in-out;
 }
