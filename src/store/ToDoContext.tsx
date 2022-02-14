@@ -12,12 +12,15 @@ type Action =
   | { type: "SET_EDITING"; payload: boolean }
   | { type: "SET_TODO_TO_UPDATE"; payload: Todo }
   | { type: "OPEN_FORM" }
-  | { type: "CLOSE_FORM" };
+  | { type: "CLOSE_FORM" }
+  | { type: "ACTIVE_HISTORY_MODE" }
+  | { type: "DEACTIVE_HISTORY_MODE" };
 type DispatchProps = (action: Action) => void;
 type State = {
   todoList: Todo[];
   openForm: boolean;
   editing: boolean;
+  historyMode: boolean;
   todoToUpdate: Todo;
 };
 type ToDoProviderProps = { children: ReactNode };
@@ -88,6 +91,12 @@ const ToDoReducer = (state: State, action: Action) => {
     case "CLOSE_FORM": {
       return { ...state, openForm: false };
     }
+    case "ACTIVE_HISTORY_MODE": {
+      return { ...state, historyMode: true };
+    }
+    case "DEACTIVE_HISTORY_MODE": {
+      return { ...state, historyMode: false };
+    }
     default: {
       throw new Error("Unhandled action type");
     }
@@ -99,6 +108,7 @@ const ToDoProvider = ({ children }: ToDoProviderProps) => {
     todoList: [],
     openForm: false,
     editing: false,
+    historyMode: false,
     todoToUpdate: {} as Todo,
   });
   const value = { state, dispatch };

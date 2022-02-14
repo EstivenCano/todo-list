@@ -12,6 +12,7 @@ const ToDoList: FC = () => {
   const { openForm, todoList, editing } = state;
   return (
     <Grid
+      aria-label='ToDo List'
       container
       item
       flexDirection='column'
@@ -36,7 +37,7 @@ const ToDoList: FC = () => {
           width: "100%",
         }}>
         {todoList
-          .filter((todo) => !todo.completed)
+          .filter((todo) => !todo.completed || state.historyMode)
           .map((todo, index) => (
             <Collapse key={todo.id}>
               <TodoItem todo={todo} index={index} />

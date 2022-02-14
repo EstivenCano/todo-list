@@ -6,11 +6,19 @@ import Button from "../../components/Button";
 import { useNavigate } from "react-router-dom";
 
 const Options: FC = () => {
-  const { dispatch } = useToDoContext();
+  const { state, dispatch } = useToDoContext();
   const navigate = useNavigate();
 
   const handleNewForm = () => {
     dispatch({ type: "OPEN_FORM" });
+  };
+
+  const handleActiveHistoryMode = () => {
+    dispatch({ type: "ACTIVE_HISTORY_MODE" });
+  };
+
+  const handleDeactiveHistoryMode = () => {
+    dispatch({ type: "DEACTIVE_HISTORY_MODE" });
   };
 
   return (
@@ -24,9 +32,16 @@ const Options: FC = () => {
       <Button onClick={() => navigate("/")} aria-label='Go home'>
         Go home
       </Button>
-      <Button onClick={() => navigate("/history")} aria-label='ToDo history'>
-        Todo history
-      </Button>
+      {!state.historyMode ? (
+        <Button onClick={handleActiveHistoryMode} aria-label='ToDo history'>
+          Todo history
+        </Button>
+      ) : (
+        <Button onClick={handleDeactiveHistoryMode} aria-label='New ToDo'>
+          Actual Todos
+        </Button>
+      )}
+
       <Button
         color='success'
         aria-label='Add ToDo'

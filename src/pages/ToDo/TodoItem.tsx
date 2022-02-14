@@ -11,7 +11,7 @@ interface TodoItemProps {
 }
 
 const TodoItem: FC<TodoItemProps> = ({ todo, index }) => {
-  const { dispatch } = useToDoContext();
+  const { state, dispatch } = useToDoContext();
   const [checked, setChecked] = useState(false);
 
   const handleDelete = () => {
@@ -35,6 +35,7 @@ const TodoItem: FC<TodoItemProps> = ({ todo, index }) => {
     <Grid
       item
       container
+      aria-label='Todo item'
       height='100%'
       flexDirection='row'
       justifyContent='flex-start'
@@ -43,6 +44,7 @@ const TodoItem: FC<TodoItemProps> = ({ todo, index }) => {
       <Grid item xs={2} md={1}>
         <Checkbox
           onClick={handleComplete}
+          disabled={state.historyMode}
           checked={todo.completed || checked}
           aria-label='Mark ToDo as completed'
           sx={{
@@ -69,8 +71,11 @@ const TodoItem: FC<TodoItemProps> = ({ todo, index }) => {
         </Typography>
       </Grid>
       <Grid item xs={12} md={2}>
-        <IconButton onClick={handleEdit} aria-label='Edit ToDo'>
-          <Edit color='primary' />
+        <IconButton
+          onClick={handleEdit}
+          aria-label='Edit ToDo'
+          disabled={state.historyMode}>
+          <Edit color={state.historyMode ? "disabled" : "primary"} />
         </IconButton>
         <IconButton onClick={handleDelete} aria-label='Delete ToDo'>
           <Delete color='error' />
